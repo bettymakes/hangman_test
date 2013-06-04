@@ -24,7 +24,8 @@ class Hangman
 	def word_has(letter)
 		until letter.match(/[[:lower:]]/) && letter.length == 1
 			p "invalid guess: singular lowercase letters only, please"
-			your_guess
+			# your_guess ????????????
+			#  issue 1 to be fixed
 		end
 		word.include?(letter)
 	end
@@ -57,7 +58,10 @@ class Hangman
 		if !@previous_letters.to_s.include?(letter)
 			@previous_letters.push(letter)
 		end
-		puts "You've guessed these letters: #{previous_letters.to_s}"
+		# guessed_letters = previous_letters.to_s
+		# issue 2 to be fixed
+
+		puts "You've guessed these letters: #{previous_letters}"
 	end
 
 	def your_guess
@@ -74,9 +78,9 @@ class Hangman
 			wrong_letter(letter)
 		end
 		if chances == 0
-			puts "You're a failure and you've always been a failure"
+			puts "Sorry--no more guesses"
 		else
-			puts "Success! The money and hoes will follow soon"
+			puts "A winner is you!"
 		end
 	end
 
