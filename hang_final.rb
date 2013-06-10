@@ -1,7 +1,7 @@
 class Hangman
 	attr_accessor :words, :word, :chances, :letter, :board, :previous_letters
-	WORDS = ["orange", "graph", "easy", "logical", "eerie", "feelers", "starfish"]
-
+	# WORDS = ["orange", "graph", "easy", "logical", "eerie", "feelers", "starfish"]
+	WORDS = ["orange"]
 	def initialize
 		@chances = 8
 		@previous_letters = []
@@ -11,25 +11,26 @@ class Hangman
 
 	def draw_board(word)
     board = ""
-    print "\n"
+    # print "\n"
     for i in word.each_char
       board << "_ "
     end
-    print "\n\n"
-    puts board
+    # print "\n\n"
+    # puts board
     board
   end
 
-	def word_has(letter)
+	def word_has?(word, letter)
 		until letter.match(/[[:lower:]]/) && letter.length == 1
-			p "invalid guess: singular lowercase letters only, please"
+			# p "invalid guess: singular lowercase letters only, please"
+			return "Invalid"
 			# your_guess ????????????
 			#  issue 1 to be fixed
 		end
 		word.include?(letter)
 	end
 
-	def put_letter_on_board(letter)
+	def put_letter_on_board(word, letter)
 		counter = 0
 		word.each_char do |x|
 			if letter == x
@@ -37,14 +38,16 @@ class Hangman
 			end
 			counter += 2
 		end
-		puts board
+		# puts board
+		return board
 	end
 
 	def wrong_letter(letter)
-		if word_has(letter)
-			put_letter_on_board(letter)
+		if word_has?(word, letter)
+			put_letter_on_board(word, letter)
 			puts "#{chances} chances left"
-		elsif @previous_letters.to_s.include?(letter)
+		elsif @previous_letters.to_s.include?(letter) 
+			return "Already guessed"
 			puts board
 			puts "You've already guessed that, goldfish."
 			puts "#{chances} chances left"		
@@ -85,6 +88,6 @@ class Hangman
 
 end
 
-h = Hangman.new
+# h = Hangman.new
 
-h.play_game
+# h.play_game
