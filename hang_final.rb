@@ -1,5 +1,4 @@
 class Hangman
-
 	attr_accessor :words, :word, :chances, :letter, :board, :previous_letters
 	WORDS = ["orange", "graph", "easy", "logical", "eerie", "feelers", "starfish"]
 
